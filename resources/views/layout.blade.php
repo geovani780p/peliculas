@@ -11,6 +11,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <style>
+
+
+
+
+body {
+    position: relative;
+    background: url('{{ asset('images/fondo-retumbar.jpg') }}') no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Anton', sans-serif;
+    color: white;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: rgba(20, 20, 20, 0.95);
+    border-bottom: 3px solid crimson;
+}
+
+h1, h2 {
+    text-shadow: 2px 2px 6px black;
+}
+
         body {
             background: url('{{ asset('imagenes/retumbar.webp') }}') no-repeat center center fixed;
             background-size: cover;
@@ -77,13 +100,22 @@
             background-color: crimson;
             color: white;
         }
+        body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: -1;
+}
+
     </style>
+    
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('inicio') }}">🔥 Películas El Chino</a>
+        <a class="navbar-brand" href="{{ route('inicio') }}">🔥 Películas El Chino en caliente</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>

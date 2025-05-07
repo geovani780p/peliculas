@@ -7,6 +7,17 @@
 </div>
 
 <div class="mb-3">
+    <label for="imagen" class="form-label">Imagen (archivo)</label>
+    <input type="file" name="imagen" class="form-control">
+    @if (!empty($pelicula->imagen))
+        <img src="{{ asset('storage/' . $pelicula->imagen) }}" class="mt-2 rounded" style="max-width: 100px;">
+    @endif
+    @error('imagen')
+        <div class="text-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
     <label for="descripcion" class="form-label">Descripción</label>
     <textarea name="descripcion" class="form-control" required>{{ $pelicula->descripcion ?? old('descripcion') }}</textarea>
     @error('descripcion')

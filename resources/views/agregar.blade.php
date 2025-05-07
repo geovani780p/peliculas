@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <form action="{{ route('guardar') }}" method="POST">
+    <form action="{{ route('guardar') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @include('formulario')
         <button type="submit" class="btn btn-success">Guardar</button>

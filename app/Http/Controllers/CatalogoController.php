@@ -12,9 +12,16 @@ class CatalogoController extends Controller
         return view('inicio');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $peliculas = Catalogo::all();
+        $query = Catalogo::query();
+
+        if ($request->has('buscar')) {
+            $query->where('titulo', 'like', '%' . $request->buscar . '%');
+        }
+
+        $peliculas = $query->get();
+
         return view('listado_peliculas', compact('peliculas'));
     }
 
@@ -25,17 +32,24 @@ class CatalogoController extends Controller
 
     public function store(Request $request)
     {
-       
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
             'genero' => 'required',
             'director' => 'required',
             'fecha_estreno' => 'required|date',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        Catalogo::create($request->all());
-        return redirect()->route('listado_peliculas')->with('success', 'Película agregada');
+        $datos = $request->except('_token');
+
+        if ($request->hasFile('imagen')) {
+            $datos['imagen'] = $request->file('imagen')->store('imagenes', 'public');
+        }
+
+        Catalogo::create($datos);
+
+        return redirect()->route('listado_peliculas')->with('success', 'Película agregada correctamente');
     }
 
     public function edit($id)
@@ -46,25 +60,30 @@ class CatalogoController extends Controller
 
     public function update(Request $request, $id)
     {
-    
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
             'genero' => 'required',
             'director' => 'required',
             'fecha_estreno' => 'required|date',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $pelicula = Catalogo::findOrFail($id);
-        $pelicula->update($request->all());
-        return redirect()->route('listado_peliculas')->with('success', 'Película actualizada');
+        $datos = $request->except(['_token', '_method']);
+
+        if ($request->hasFile('imagen')) {
+            $datos['imagen'] = $request->file('imagen')->store('imagenes', 'public');
+        }
+
+        $pelicula->update($datos);
+
+        return redirect()->route('listado_peliculas')->with('success', 'Película actualizada correctamente');
     }
 
     public function destroy($id)
-{
-    $pelicula = Catalogo::findOrFail($id);
-    $pelicula->delete();
-    return redirect()->route('listado_peliculas')->with('success', 'Película eliminada');
-}
-
+    {
+        Catalogo::findOrFail($id)->delete();
+        return redirect()->route('listado_peliculas')->with('success', 'Película eliminada');
+    }
 }

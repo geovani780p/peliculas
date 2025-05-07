@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <form action="{{ route('actualizar', $pelicula->id) }}" method="POST">
+    <form action="{{ route('actualizar', $pelicula->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         @include('formulario', ['pelicula' => $pelicula])
