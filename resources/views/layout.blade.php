@@ -4,43 +4,29 @@
     <meta charset="UTF-8">
     <title>@yield('title')</title>
 
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <style>
-
-
-
-
-body {
-    position: relative;
-    background: url('{{ asset('images/fondo-retumbar.jpg') }}') no-repeat center center fixed;
-    background-size: cover;
-    background-attachment: fixed;
-    font-family: 'Anton', sans-serif;
-    color: white;
-    min-height: 100vh;
-}
-
-.navbar {
-    background-color: rgba(20, 20, 20, 0.95);
-    border-bottom: 3px solid crimson;
-}
-
-h1, h2 {
-    text-shadow: 2px 2px 6px black;
-}
-
         body {
-            background: url('{{ asset('imagenes/retumbar.webp') }}') no-repeat center center fixed;
+            position: relative;
+            background: url('{{ asset('images/fondo-retumbar.jpg') }}') no-repeat center center fixed;
             background-size: cover;
             background-attachment: fixed;
             font-family: 'Anton', sans-serif;
             color: white;
             min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: -1;
         }
 
         .navbar {
@@ -100,30 +86,21 @@ h1, h2 {
             background-color: crimson;
             color: white;
         }
-        body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5); 
-    z-index: -1;
-}
-
     </style>
-    
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('inicio') }}">🔥 Películas El Chino en caliente</a>
+        <a class="navbar-brand" href="{{ route('listado_peliculas') }}">🔥 Películas El Chino en caliente</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{{ route('inicio') }}">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('listado_peliculas') }}">Listado</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('listado_peliculas') }}">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('agregar') }}">Agregar</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">Salir</a></li>
             </ul>
         </div>
     </div>
@@ -133,6 +110,8 @@ h1, h2 {
     @yield('content')
 </div>
 
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

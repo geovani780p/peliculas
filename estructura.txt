@@ -1,0 +1,19 @@
+peliculas/
+├── app/
+│   └── Http/
+│       └── Controllers/
+│           ├── AuthController.php          # Controla login, registro y logout
+│           └── CatalogoController.php      # Controla las operaciones del CRUD
+├── resources/
+│   └── views/
+│       ├── auth/
+│       │   ├── login.blade.php             # Vista de inicio de sesión
+│       │   └── register.blade.php          # Vista de registro
+│       ├── layout.blade.php                # Plantilla base general
+│       ├── inicio.blade.php                # Vista del inicio después del login
+│       ├── listado_peliculas.blade.php     # Vista donde se listan las películas
+│       ├── agregar.blade.php               # Vista para agregar una nueva película
+│       ├── editar.blade.php                # Vista para editar una película existente
+│       └── formulario.blade.php            # Formulario reutilizable para agregar/editar
+├── routes/
+│   └── web.php                             # Define las rutas del sistema

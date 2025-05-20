@@ -1,14 +1,11 @@
 @extends('layout')
 
-@section('title', 'Películas El Chino - Retumbar Edition')
+@section('title', 'Inicio')
 
 @section('content')
-<div class="d-flex flex-column justify-content-center align-items-center text-center" style="height: 80vh;">
-    <h1 class="display-3 fw-bold text-white text-shadow mb-4" style="text-shadow: 2px 2px 8px black;">
-        Películas El Chino
-    </h1>
-    <a href="{{ route('listado_peliculas') }}" class="btn btn-danger btn-lg px-4 py-2 shadow">
-        Ver Catálogo
-    </a>
+<div class="text-center mt-5">
+    <h1 class="display-4">Bienvenido a Películas El Chino</h1>
+    <p class="lead">Has iniciado sesión correctamente. Usa el menú para navegar.</p>
+    <a href="{{ route('listado_peliculas') }}" class="btn btn-danger mt-3">Ir al Catálogo</a>
 </div>
 @endsection
